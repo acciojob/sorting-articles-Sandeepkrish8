@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const bands = [
   'The Plot in You',
   'The Devil Wears Prada',
@@ -19,9 +18,13 @@ function stripArticle(name) {
   return name.replace(/^(a |an |the )/i, '').trim();
 }
 
-const sortedBands = bands.sort((a, b) =>
+const sortedBands = [...bands].sort((a, b) =>
   stripArticle(a).localeCompare(stripArticle(b))
 );
 
-document.getElementById("band").innerHTML =
-  sortedBands.map(band => `<li>${band}</li>`).join('');
+const ul = document.getElementById("band");
+sortedBands.forEach(band => {
+  const li = document.createElement("li");
+  li.textContent = band;
+  ul.appendChild(li);
+});
